@@ -463,6 +463,9 @@ namespace eosio {
          } catch (chain::transaction_exception& e) {
             error_results results{400, "Bad Request", error_results::error_info(e, verbose_http_errors)};
             cb( 400, fc::json::to_string( results ));
+         } catch (chain::block_id_type_exception& e) {
+            error_results results{404, "Not Found", error_results::error_info(e, verbose_http_errors)};
+            cb( 404, fc::json::to_string( results));
          } catch (fc::eof_exception& e) {
             error_results results{400, "Bad Request", error_results::error_info(e, verbose_http_errors)};
             cb( 400, fc::json::to_string( results ));
